@@ -1,0 +1,29 @@
+#container {
+  max-width: 100vw;
+  max-height: 100vh;
+}
+
+#fieldContainer {
+  max-width: 100vw;
+  max-height: 100vh;
+  display: flex;
+  justify-content: center;
+}
+
+#fieldImage {
+  max-width: 100vw;
+  max-height: 90vh;
+  top: 5vh;
+  position: absolute;
+  border: 5px solid white;
+}
+
+.positionButton {
+  min-width: 5vh;
+  min-height: 5vh;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
