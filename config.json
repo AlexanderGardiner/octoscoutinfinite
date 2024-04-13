@@ -1,0 +1,25 @@
+{
+  "startingLocations": [
+    { "x": 5, "y": 10 },
+    { "x": 5, "y": 10 }
+  ],
+  "gamePieces": {
+    "name": "Name",
+    "autoCollectionLocations": [
+      { "name": "location1", "x": 5, "y": 10 },
+      { "name": "location2", "x": 5, "y": 10 }
+    ],
+    "teleopCollectionLocations": [
+      { "name": "location1", "x": 5, "y": 10 },
+      { "name": "location2", "x": 5, "y": 10 }
+    ],
+    "autoPossibleResults": ["result1", "result2"],
+    "teleopPossibleResult": ["result1", "result2"]
+  },
+  "endgameOptions": [
+    { "name": "Name", "possibleResults": ["result1", "result2"] },
+    { "name": "Name", "possibleResults": ["result1", "result2"] }
+  ],
+  "commentsEnabled": true,
+  "toggleableOptions": ["Died?", "Primarily Defense"]
+}

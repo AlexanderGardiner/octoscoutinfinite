@@ -1,0 +1,35 @@
+{
+  "Teleop": [
+    {
+      "graphName": "Pieces Controlled",
+      "metrics": [
+        { "path": "gamePieces:Note/autoPossibleResults:Speaker", "weight": 1 },
+        { "path": "gamePieces:Note/autoPossibleResults:Amp", "weight": 1 },
+        {
+          "path": "gamePieces:Note/autoPossibleResults:Intentional Drop",
+          "weight": 1
+        },
+        {
+          "path": "gamePieces:Note/teleopPossibleResults:Speaker",
+          "weight": 1
+        },
+        {
+          "path": "gamePieces:Note/teleopPossibleResults:Amp",
+          "weight": 1
+        },
+        {
+          "path": "gamePieces:Note/teleopPossibleResults:Amplified Speaker",
+          "weight": 1
+        },
+        {
+          "path": "gamePieces:Note/teleopPossibleResults:Trap",
+          "weight": 1
+        },
+        {
+          "path": "gamePieces:Note/teleopPossibleResults:Ferry",
+          "weight": 1
+        }
+      ]
+    }
+  ]
+}
