@@ -1,0 +1,47 @@
+#container {
+  max-width: 100vw;
+  max-height: 100vh;
+}
+
+#fieldContainer {
+  max-width: 100vw;
+  max-height: 100vh;
+  display: flex;
+  justify-content: center;
+}
+
+#fieldImage {
+  max-width: 100vw;
+  max-height: 60vh;
+  top: 5vh;
+  position: absolute;
+  border: 1px solid white;
+}
+
+.positionButton {
+  width: 5vh;
+  height: 5vh;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+#gamePieceViewerContainer {
+  max-width: 100vw;
+  max-height: 100vh;
+  display: flex;
+  justify-content: center;
+}
+#gamePieceViewer {
+  background-color: #bb9839;
+  position: absolute;
+  top: 70vh;
+  height: 20vh;
+  width: 30vh;
+  display: flex;
+  justify-content: center;
+}
+
+#gamePieceViewerTitle {
+}

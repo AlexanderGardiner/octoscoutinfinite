@@ -23,7 +23,6 @@
       ],
       "neutralAutoCollectionLocations": [
         { "name": "preLoad", "x": 0, "y": 0 },
-        { "name": "dropped", "x": 0, "y": 8.2 },
         { "name": "center1", "x": 8.3, "y": 7.45 },
         { "name": "center2", "x": 8.3, "y": 5.8 },
         { "name": "center3", "x": 8.3, "y": 4.1 },

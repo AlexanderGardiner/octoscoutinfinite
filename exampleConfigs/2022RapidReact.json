@@ -19,10 +19,7 @@
         { "name": "red2", "x": 11.4, "y": 6.35 },
         { "name": "red3", "x": 11.5, "y": 2.1 }
       ],
-      "neutralAutoCollectionLocations": [
-        { "name": "preLoad", "x": 0, "y": 0 },
-        { "name": "dropped", "x": 0, "y": 8.2 }
-      ],
+      "neutralAutoCollectionLocations": [{ "name": "preLoad", "x": 0, "y": 0 }],
       "autoFieldImageLocation": "autoField.png",
       "teleopCollectionLocations": [
         { "name": "preLoad", "x": 0, "y": 0 },

@@ -14,22 +14,24 @@ function generateStartingLocationButtons() {
   let startingLocations = JSONConfig.startingLocations;
 
   for (let i = 0; i < startingLocations.length; i++) {
-    let button = document.createElement("button");
-    button.onclick = function () {
-      selectPosition(startingLocations[i]);
-    };
-
-    button.classList.add("positionButton");
-
-    button.style.top =
-      xPositionMetersToPixelsFromTop(fieldImage, startingLocations[i].x, 5) +
-      "px";
-    button.style.left =
-      yPositionMetersToPixelsFromLeft(fieldImage, startingLocations[i].y, 5) +
-      "px";
-    fieldContainer.appendChild(button);
-    button.style.position = "absolute";
+    addStartingLocationButton(startingLocations[i]);
   }
+}
+
+function addStartingLocationButton(startingLocation) {
+  let button = document.createElement("button");
+  button.onclick = function () {
+    selectPosition(startingLocation);
+  };
+
+  button.classList.add("positionButton");
+
+  button.style.top =
+    xPositionMetersToPixelsFromTop(fieldImage, startingLocation.x, 5) + "px";
+  button.style.left =
+    yPositionMetersToPixelsFromLeft(fieldImage, startingLocation.y, 5) + "px";
+  fieldContainer.appendChild(button);
+  button.style.position = "absolute";
 }
 
 function selectPosition(position) {
