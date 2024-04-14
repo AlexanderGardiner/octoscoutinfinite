@@ -8,7 +8,7 @@ generateSelects();
 loadStoredData();
 
 function loadStoredData() {
-  let data = localStorage.getItem("extra");
+  let data = localStorage.getItem("06extra");
   if (data != null) {
     let extraData = JSON.parse(data);
     for (let i = 0; i < extraOptions.length; i++) {
@@ -48,7 +48,7 @@ function saveData() {
   for (let i = 0; i < extraOptions.length; i++) {
     extra[extraOptions[i].name] = extraSelects[i].value;
   }
-  localStorage.setItem("extra", JSON.stringify(extra));
+  localStorage.setItem("06extra", JSON.stringify(extra));
 }
 
 let matchSubmitted = false;

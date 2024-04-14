@@ -39,5 +39,5 @@ function addStartingLocationButton(startingLocation) {
 }
 
 function selectPosition(position) {
-  localStorage.setItem("startingLocation", position);
+  localStorage.setItem("02startingLocation", JSON.stringify(position));
 }

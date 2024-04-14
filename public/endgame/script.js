@@ -7,7 +7,7 @@ generateSelects();
 loadStoredData();
 
 function loadStoredData() {
-  let data = localStorage.getItem("endgame");
+  let data = localStorage.getItem("05endgame");
   if (data != null) {
     let endgameData = JSON.parse(data);
     for (let i = 0; i < endgameOptions.length; i++) {
@@ -46,5 +46,5 @@ function saveData() {
   for (let i = 0; i < endgameOptions.length; i++) {
     endgame[endgameOptions[i].name] = endgameSelects[i].value;
   }
-  localStorage.setItem("endgame", JSON.stringify(endgame));
+  localStorage.setItem("05endgame", JSON.stringify(endgame));
 }

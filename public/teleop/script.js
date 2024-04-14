@@ -22,7 +22,7 @@ class GamePiece {
 }
 
 function loadStoredData() {
-  let data = localStorage.getItem("teleop");
+  let data = localStorage.getItem("04teleop");
   if (data != null) {
     gamePieces = JSON.parse(data);
     updateGamePieceViewer();
@@ -105,7 +105,7 @@ function updateGamePieceViewer() {
     let possibleResults = [];
     for (let j = 0; j < JSONConfig.gamePieces.length; j++) {
       if (JSONConfig.gamePieces[j].name == gamePieces[i].name) {
-        possibleResults = JSONConfig.gamePieces[j].autoPossibleResults;
+        possibleResults = JSONConfig.gamePieces[j].teleopPossibleResults;
       }
     }
 
@@ -121,7 +121,7 @@ function updateGamePieceViewer() {
     // Adding a selector for results
     let gamePieceResultSelector = document.createElement("select");
     if (possibleResults.length > 0 && gamePieces[i].result == null) {
-      gamePieces[i].result = possibleResults[0];
+      gamePieces[i].result = possibleResults[0].name;
     }
 
     gamePieceResultSelector.onchange = () => {
@@ -160,5 +160,5 @@ function updateGamePieceViewer() {
 }
 window.saveData = saveData;
 function saveData() {
-  localStorage.setItem("teleop", JSON.stringify(gamePieces));
+  localStorage.setItem("04teleop", JSON.stringify(gamePieces));
 }

@@ -21,7 +21,7 @@ class GamePiece {
 }
 
 function loadStoredData() {
-  let data = localStorage.getItem("auto");
+  let data = localStorage.getItem("03auto");
   if (data != null) {
     gamePieces = JSON.parse(data);
     updateGamePieceViewer();
@@ -188,5 +188,5 @@ function updateGamePieceViewer() {
 }
 window.saveData = saveData;
 function saveData() {
-  localStorage.setItem("auto", JSON.stringify(gamePieces));
+  localStorage.setItem("03auto", JSON.stringify(gamePieces));
 }

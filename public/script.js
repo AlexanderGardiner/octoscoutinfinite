@@ -4,7 +4,7 @@ let matchNumberInput = document.getElementById("matchNumberInput");
 let teamColorInput = document.getElementById("teamColorInput");
 
 function loadStoredData() {
-  let data = localStorage.getItem("metaData");
+  let data = localStorage.getItem("01metaData");
   if (data != null) {
     let metaData = JSON.parse(data);
     scoutNameInput.value = metaData.scoutName;
@@ -18,7 +18,7 @@ function saveData() {
   metaData.teamNumber = teamNumberInput.value;
   metaData.matchNumber = matchNumberInput.value;
   metaData.teamColor = teamColorInput.value;
-  localStorage.setItem("metaData", JSON.stringify(metaData));
+  localStorage.setItem("01metaData", JSON.stringify(metaData));
 }
 
 loadStoredData();
