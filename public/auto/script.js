@@ -31,7 +31,7 @@ function loadStoredData() {
 // Dynamically generating buttons to select auto collections
 function generateCollectionButtons() {
   let gamePieces = JSONConfig.gamePieces;
-  let iteratorColorStartingValue = 75;
+  let iteratorColorStartingValue = 50;
   let maxColorIteratorValue = 255;
 
   for (let i = 0; i < gamePieces.length; i++) {
