@@ -18,7 +18,9 @@ function generateStartingLocationButtons() {
   }
 }
 
+// Adding a button to select a starting location
 function addStartingLocationButton(startingLocation) {
+  // Creating the button
   let button = document.createElement("button");
   button.onclick = function () {
     selectPosition(startingLocation);
@@ -26,12 +28,13 @@ function addStartingLocationButton(startingLocation) {
 
   button.classList.add("positionButton");
 
+  // Calculating position on the field
   button.style.top =
     xPositionMetersToPixelsFromTop(fieldImage, startingLocation.x, 5) + "px";
   button.style.left =
     yPositionMetersToPixelsFromLeft(fieldImage, startingLocation.y, 5) + "px";
+
   fieldContainer.appendChild(button);
-  button.style.position = "absolute";
 }
 
 function selectPosition(position) {
