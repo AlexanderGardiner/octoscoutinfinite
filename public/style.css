@@ -1,0 +1,29 @@
+.inputLabel {
+  display: inline;
+  color: #bb9839;
+  margin: 1vh;
+  font-size: x-large;
+  font-weight: bold;
+}
+
+input {
+  height: 4vh;
+}
+
+select {
+  height: 4vh;
+}
+
+.inputContainer {
+  position: relative;
+  display: block;
+  margin-top: 10vh;
+  text-align: center;
+}
+
+#dataAnalysisButton {
+  width: 10vh;
+  height: 4vh;
+  margin: 1vh;
+  display: block;
+}
