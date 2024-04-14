@@ -2,6 +2,7 @@ const express = require("express");
 const path = require("path");
 const app = express();
 const fs = require("fs");
+const fileLock = require("proper-lockfile");
 app.use(express.json());
 app.use(
   express.urlencoded({
@@ -10,26 +11,32 @@ app.use(
 );
 app.use(express.static("public"));
 
-app.post("/submitData", (req, res) => {
+app.post("/submitData", async (req, res) => {
   console.log(req.body);
-  writeDataToJSON(req.body);
-  res.status(200);
-  res.send();
+  await writeDataToJSON(req.body);
+  res.sendStatus(200);
 });
+
 const PORT = 9084;
 app.listen(PORT, () => {
   console.log("App is listening on port 9084");
 });
 
-function writeDataToJSON(data) {
+async function writeDataToJSON(data) {
   let filePath = "./output.json";
   data.timestamp = new Date();
-  fs.readFile(filePath, "utf8", (err, fileContent) => {
-    if (err) throw err;
+  const lockfilePath = filePath + ".lock";
 
-    fs.writeFile(filePath, JSON.stringify(data), (err) => {
-      if (err) throw err;
-      console.log("Data appended to output.json.");
-    });
-  });
+  try {
+    await fileLock.lock(lockfilePath);
+    const fileContent = fs.readFileSync(filePath, "utf8");
+    const jsonData = JSON.parse(fileContent || "[]");
+    jsonData.push(data);
+    fs.writeFileSync(filePath, JSON.stringify(jsonData, null, 2));
+    console.log("Data appended to output.json.");
+  } catch (err) {
+    console.error("Error writing to output.json:", err);
+  } finally {
+    await fileLock.unlock(lockfilePath);
+  }
 }
