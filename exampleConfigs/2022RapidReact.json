@@ -46,12 +46,12 @@
     {
       "name": "Climb",
       "possibleResults": [
-        "No Attempt",
-        "Failed",
-        "Level 1",
-        "Level 2",
-        "Level 3",
-        "Level 4"
+        { "name": "No Attempt" },
+        { "name": "Failed" },
+        { "name": "Level 1" },
+        { "name": "Level 2" },
+        { "name": "Level 3" },
+        { "name": "Level 4" }
       ]
     }
   ],

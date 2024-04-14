@@ -59,19 +59,35 @@
   "endgameOptions": [
     {
       "name": "Park",
-      "possibleResults": ["No Attempt", "Failed", "Successful"]
+      "possibleResults": [
+        { "name": "No Attempt" },
+        { "name": "Failed" },
+        { "name": "Successful" }
+      ]
     },
     {
       "name": "Onstage",
-      "possibleResults": ["No Attempt", "Failed", "Successful"]
+      "possibleResults": [
+        { "name": "No Attempt" },
+        { "name": "Failed" },
+        { "name": "Successful" }
+      ]
     },
     {
       "name": "Spotlit",
-      "possibleResults": ["No Attempt", "Failed", "Successful"]
+      "possibleResults": [
+        { "name": "No Attempt" },
+        { "name": "Failed" },
+        { "name": "Successful" }
+      ]
     },
     {
       "name": "Harmony",
-      "possibleResults": ["No Attempt", "Failed", "Successful"]
+      "possibleResults": [
+        { "name": "No Attempt" },
+        { "name": "Failed" },
+        { "name": "Successful" }
+      ]
     }
   ],
   "commentsEnabled": true,
