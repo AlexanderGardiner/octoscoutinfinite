@@ -40,8 +40,12 @@
   height: 20vh;
   width: 30vh;
   display: flex;
-  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  overflow: scroll;
 }
 
 #gamePieceViewerTitle {
+  height: 4vh;
+  top: 0px;
 }
