@@ -141,6 +141,9 @@ function updateGamePieceViewer() {
 
     // Adding a selector for results
     let gamePieceResultSelector = document.createElement("select");
+    gamePieceResultSelector.onchange = () => {
+      gamePieces[i].result = gamePieceResultSelector.value;
+    };
     gamePieceResultSelector.classList.add("gamePieceResultSelector");
 
     for (var j = 0; j < possibleResults.length; j++) {
@@ -169,4 +172,8 @@ function updateGamePieceViewer() {
     gamePiece.style.backgroundColor = gamePieces[i].color;
     gamePieceViewer.scrollTop = gamePieceViewer.scrollHeight;
   }
+}
+window.saveData = saveData;
+function saveData() {
+  localStorage.setItem("auto", JSON.stringify(gamePieces));
 }
