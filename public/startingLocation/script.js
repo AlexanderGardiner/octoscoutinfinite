@@ -24,6 +24,7 @@ function addStartingLocationButton(startingLocation) {
   let button = document.createElement("button");
   button.onclick = function () {
     selectPosition(startingLocation);
+    window.location.href = "/auto";
   };
 
   button.classList.add("positionButton");
