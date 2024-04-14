@@ -28,12 +28,18 @@
       ],
       "teleopFieldImageLocation": "teleopField.png",
       "autoPossibleResults": [
-        "Lower Hub",
-        "Upper Hub",
-        "Failed",
-        "Failed Intake"
+        { "name": "No Result" },
+        { "name": "Lower Hub" },
+        { "name": "Upper Hub" },
+        { "name": "Failed" },
+        { "name": "Failed Intake" }
       ],
-      "teleopPossibleResults": ["Lower Hub", "Upper Hub", "Failed"]
+      "teleopPossibleResults": [
+        { "name": "No Result" },
+        { "name": "Lower Hub" },
+        { "name": "Upper Hub" },
+        { "name": "Failed" }
+      ]
     }
   ],
   "endgameOptions": [

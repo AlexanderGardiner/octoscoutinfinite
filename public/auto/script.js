@@ -7,9 +7,10 @@ import {
 let JSONConfig = await getJSONConfig();
 let fieldContainer = document.getElementById("fieldContainer");
 let fieldImage = document.getElementById("fieldImage");
-let gamePieceViewer = document.getElementById("gamePieceContainer");
+let gamePieceContainer = document.getElementById("gamePieceContainer");
+let gamePieceViewer = document.getElementById("gamePieceViewer");
 let gamePieces = [];
-generateStartingLocationButtons();
+generateCollectionButtons();
 
 class GamePiece {
   constructor(collectionLocation, name, color) {
@@ -20,104 +21,141 @@ class GamePiece {
 }
 
 // Dynamically generating buttons to select auto collections
-function generateStartingLocationButtons() {
+function generateCollectionButtons() {
   let gamePieces = JSONConfig.gamePieces;
+  let iteratorColorStartingValue = 75;
+  let maxColorIteratorValue = 255;
 
   for (let i = 0; i < gamePieces.length; i++) {
-    let blueButtonColorIterator = 75;
+    // Creating the collection locations for the blue alliance, changing the color for differentiation
+    let blueButtonColorIterator = iteratorColorStartingValue;
     for (let j = 0; j < gamePieces[i].blueAutoCollectionLocations.length; j++) {
-      addCollectionButton(
+      addCollectionClickableImage(
         gamePieces[i].blueAutoCollectionLocations[j],
         gamePieces[i].name,
         "rgb(" + [0, 0, blueButtonColorIterator].join(",") + ")"
       );
       blueButtonColorIterator +=
-        180 / gamePieces[i].blueAutoCollectionLocations.length;
+        (maxColorIteratorValue - iteratorColorStartingValue) /
+        gamePieces[i].blueAutoCollectionLocations.length;
     }
-    let redButtonColorIterator = 75;
+
+    // Creating the collection locations for the red alliance, changing the color for differentiation
+    let redButtonColorIterator = iteratorColorStartingValue;
     for (let j = 0; j < gamePieces[i].redAutoCollectionLocations.length; j++) {
-      addCollectionButton(
+      addCollectionClickableImage(
         gamePieces[i].redAutoCollectionLocations[j],
         gamePieces[i].name,
         "rgb(" + [redButtonColorIterator, 0, 0].join(",") + ")"
       );
       redButtonColorIterator +=
-        180 / gamePieces[i].redAutoCollectionLocations.length;
+        (maxColorIteratorValue - iteratorColorStartingValue) /
+        gamePieces[i].redAutoCollectionLocations.length;
     }
-    let neutralButtonColorIterator = 75;
+
+    // Creating the collection locations for the neutral locations, changing the color for differentiation
+    let neutralButtonColorIterator = iteratorColorStartingValue;
     for (
       let j = 0;
       j < gamePieces[i].neutralAutoCollectionLocations.length;
       j++
     ) {
-      addCollectionButton(
+      addCollectionClickableImage(
         gamePieces[i].neutralAutoCollectionLocations[j],
         gamePieces[i].name,
         "rgb(" + [0, neutralButtonColorIterator, 0].join(",") + ")"
       );
       neutralButtonColorIterator +=
-        180 / gamePieces[i].neutralAutoCollectionLocations.length;
+        (maxColorIteratorValue - iteratorColorStartingValue) /
+        gamePieces[i].neutralAutoCollectionLocations.length;
     }
   }
 }
 
-function addCollectionButton(collectionLocation, gamePieceName, buttonColor) {
-  let button = document.createElement("img");
-  button.onclick = function () {
-    collectPiece(collectionLocation, gamePieceName, buttonColor);
+// Adds a clickable image to the field using the position of the button (in meters), the piece type, and the button's color
+function addCollectionClickableImage(
+  collectionLocation,
+  gamePieceName,
+  imageBackgroundColor
+) {
+  let clickableImage = document.createElement("img");
+  let clickableImageSideLength = 5; // In units of vh
+  clickableImage.onclick = function () {
+    collectPiece(collectionLocation, gamePieceName, imageBackgroundColor);
   };
 
-  button.classList.add("positionButton");
+  clickableImage.classList.add("clickableImage");
 
-  button.style.top =
-    xPositionMetersToPixelsFromTop(fieldImage, collectionLocation.x, 5) + "px";
-  button.style.left =
-    yPositionMetersToPixelsFromLeft(fieldImage, collectionLocation.y, 5) + "px";
-  fieldContainer.appendChild(button);
-  button.style.position = "absolute";
-  button.src = "/images/" + gamePieceName + ".png";
-  button.style.backgroundColor = buttonColor;
+  // Computing the correct position for the button to be at
+  clickableImage.style.top =
+    xPositionMetersToPixelsFromTop(
+      fieldImage,
+      collectionLocation.x,
+      clickableImageSideLength
+    ) + "px";
+  clickableImage.style.left =
+    yPositionMetersToPixelsFromLeft(
+      fieldImage,
+      collectionLocation.y,
+      clickableImageSideLength
+    ) + "px";
+  fieldContainer.appendChild(clickableImage);
+
+  // Setting additional style elements
+  clickableImage.src = "/images/" + gamePieceName + ".png";
+  clickableImage.style.backgroundColor = imageBackgroundColor;
+  clickableImage.style.width = clickableImageSideLength + "vh";
+  clickableImage.style.height = clickableImageSideLength + "vh";
 }
 
+// Creates a game piece object to represent a collected game piece and updates the viewer
 function collectPiece(location, gamePieceName, buttonColor) {
   gamePieces.push(new GamePiece(location, gamePieceName, buttonColor));
   updateGamePieceViewer();
 }
 
+// Updates the visualization of the game pieces collected
 function updateGamePieceViewer() {
-  gamePieceViewer.innerHTML = "";
+  let gamePieceImageSideLength = 5; // In units of vh
+  gamePieceContainer.innerHTML = "";
+
+  // Looping through game pieces
   for (let i = 0; i < gamePieces.length; i++) {
+    // Finding possible results
     let possibleResults = [];
     for (let j = 0; j < JSONConfig.gamePieces.length; j++) {
       if (JSONConfig.gamePieces[j].name == gamePieces[i].name) {
         possibleResults = JSONConfig.gamePieces[j].autoPossibleResults;
       }
     }
-    let gamePieceContainer = document.createElement("div");
-    gamePieceContainer.style.alignItems = "center";
-    gamePieceContainer.style.display = "flex";
+
+    // Creating game piece element
+    let gamePiece = document.createElement("div");
+    gamePiece.classList.add("gamePieceContainer");
+
     let gamePieceImage = document.createElement("img");
     gamePieceImage.src = "/images/" + gamePieces[i].name + ".png";
-    gamePieceImage.style.width = "5vh";
-    gamePieceImage.style.height = "5vh";
-    gamePieceImage.style.margin = "5px";
-    gamePieceImage.style.top = "0px";
+    gamePieceImage.style.width = gamePieceImageSideLength + " vh";
+    gamePieceImage.style.height = gamePieceImageSideLength + "vh";
 
+    // Adding a selector for results
     let gamePieceResultSelector = document.createElement("select");
-    gamePieceResultSelector.style.margin = "5px";
-    gamePieceResultSelector.style.top = "0px";
+    gamePieceResultSelector.classList.add("gamePieceResultSelector");
+
     for (var j = 0; j < possibleResults.length; j++) {
       var option = document.createElement("option");
       option.value = possibleResults[j].name;
       option.text = possibleResults[j].name;
       gamePieceResultSelector.appendChild(option);
     }
-    gamePieceContainer.appendChild(gamePieceImage);
-    gamePieceContainer.appendChild(gamePieceResultSelector);
-    gamePieceViewer.appendChild(gamePieceContainer);
-    gamePieceContainer.style.backgroundColor = gamePieces[i].color;
 
-    document.getElementById("gamePieceViewer").scrollTop =
-      document.getElementById("gamePieceViewer").scrollHeight;
+    // Compiling elements together
+    gamePiece.appendChild(gamePieceImage);
+    gamePiece.appendChild(gamePieceResultSelector);
+    gamePieceContainer.appendChild(gamePiece);
+
+    // Setting background color of game piece and scrolling to bottom of the viewer
+    gamePiece.style.backgroundColor = gamePieces[i].color;
+    gamePieceViewer.scrollTop = gamePieceViewer.scrollHeight;
   }
 }

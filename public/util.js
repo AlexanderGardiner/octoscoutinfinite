@@ -13,20 +13,28 @@ async function getJSONConfig() {
 }
 
 // Calculates the pixels from the top of the screen so the button is positioned on the field at the correct x coordinate (in meters).
-function xPositionMetersToPixelsFromTop(fieldImage, xMeters, buttonWidth) {
+function xPositionMetersToPixelsFromTop(
+  fieldImage,
+  xMeters,
+  widthInPercentOfScreen
+) {
   return (
     fieldImage.getBoundingClientRect().top +
     xMeters * (fieldImage.clientHeight / 16.4) -
-    ((buttonWidth / 100) * window.innerHeight) / 2
+    ((widthInPercentOfScreen / 100) * window.innerHeight) / 2
   );
 }
 
 // Calculates the pixels from the left of the screen so the button is positioned on the field at the correct y coordinate (in meters).
-function yPositionMetersToPixelsFromLeft(fieldImage, yMeters, buttonWidth) {
+function yPositionMetersToPixelsFromLeft(
+  fieldImage,
+  yMeters,
+  widthInPercentOfScreen
+) {
   return (
     fieldImage.getBoundingClientRect().left +
     yMeters * (fieldImage.clientWidth / 8.2) -
-    ((buttonWidth / 100) * window.innerHeight) / 2
+    ((widthInPercentOfScreen / 100) * window.innerHeight) / 2
   );
 }
 

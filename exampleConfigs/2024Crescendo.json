@@ -38,6 +38,7 @@
       ],
       "teleopFieldImageLocation": "teleopField.png",
       "autoPossibleResults": [
+        { "name": "No Result" },
         { "name": "Speaker" },
         { "name": "Amp" },
         { "name": "Failed" },
@@ -45,6 +46,7 @@
         { "name": "Intentional Drop" }
       ],
       "teleopPossibleResults": [
+        { "name": "No Result" },
         { "name": "Speaker" },
         { "name": "Amp" },
         { "name": "Amplified Speaker" },
