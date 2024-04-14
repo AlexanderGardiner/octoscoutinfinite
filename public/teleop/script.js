@@ -12,6 +12,7 @@ let gamePieceViewer = document.getElementById("gamePieceViewer");
 let gamePieces = [];
 generateCollectionButtons();
 loadStoredData();
+
 class GamePiece {
   constructor(collectionLocation, name, color) {
     this.collectionLocation = collectionLocation;
@@ -21,14 +22,14 @@ class GamePiece {
 }
 
 function loadStoredData() {
-  let data = localStorage.getItem("auto");
+  let data = localStorage.getItem("teleop");
   if (data != null) {
     gamePieces = JSON.parse(data);
     updateGamePieceViewer();
   }
 }
 
-// Dynamically generating buttons to select auto collections
+// Dynamically generating buttons to select teleop collections
 function generateCollectionButtons() {
   let gamePieces = JSONConfig.gamePieces;
   let iteratorColorStartingValue = 75;
@@ -36,46 +37,16 @@ function generateCollectionButtons() {
 
   for (let i = 0; i < gamePieces.length; i++) {
     // Creating the collection locations for the blue alliance, changing the color for differentiation
-    let blueButtonColorIterator = iteratorColorStartingValue;
-    for (let j = 0; j < gamePieces[i].blueAutoCollectionLocations.length; j++) {
+    let buttonColorIterator = iteratorColorStartingValue;
+    for (let j = 0; j < gamePieces[i].teleopCollectionLocations.length; j++) {
       addCollectionClickableImage(
-        gamePieces[i].blueAutoCollectionLocations[j],
+        gamePieces[i].teleopCollectionLocations[j],
         gamePieces[i].name,
-        "rgb(" + [0, 0, blueButtonColorIterator].join(",") + ")"
+        "rgb(" + [0, 0, buttonColorIterator].join(",") + ")"
       );
-      blueButtonColorIterator +=
+      buttonColorIterator +=
         (maxColorIteratorValue - iteratorColorStartingValue) /
-        gamePieces[i].blueAutoCollectionLocations.length;
-    }
-
-    // Creating the collection locations for the red alliance, changing the color for differentiation
-    let redButtonColorIterator = iteratorColorStartingValue;
-    for (let j = 0; j < gamePieces[i].redAutoCollectionLocations.length; j++) {
-      addCollectionClickableImage(
-        gamePieces[i].redAutoCollectionLocations[j],
-        gamePieces[i].name,
-        "rgb(" + [redButtonColorIterator, 0, 0].join(",") + ")"
-      );
-      redButtonColorIterator +=
-        (maxColorIteratorValue - iteratorColorStartingValue) /
-        gamePieces[i].redAutoCollectionLocations.length;
-    }
-
-    // Creating the collection locations for the neutral locations, changing the color for differentiation
-    let neutralButtonColorIterator = iteratorColorStartingValue;
-    for (
-      let j = 0;
-      j < gamePieces[i].neutralAutoCollectionLocations.length;
-      j++
-    ) {
-      addCollectionClickableImage(
-        gamePieces[i].neutralAutoCollectionLocations[j],
-        gamePieces[i].name,
-        "rgb(" + [0, neutralButtonColorIterator, 0].join(",") + ")"
-      );
-      neutralButtonColorIterator +=
-        (maxColorIteratorValue - iteratorColorStartingValue) /
-        gamePieces[i].neutralAutoCollectionLocations.length;
+        gamePieces[i].teleopCollectionLocations.length;
     }
   }
 }
@@ -152,6 +123,7 @@ function updateGamePieceViewer() {
     if (possibleResults.length > 0) {
       gamePieces[i].result = possibleResults[0];
     }
+
     gamePieceResultSelector.onchange = () => {
       gamePieces[i].result = gamePieceResultSelector.value;
     };
@@ -186,5 +158,5 @@ function updateGamePieceViewer() {
 }
 window.saveData = saveData;
 function saveData() {
-  localStorage.setItem("auto", JSON.stringify(gamePieces));
+  localStorage.setItem("teleop", JSON.stringify(gamePieces));
 }
