@@ -94,11 +94,11 @@
   "extraOptions": [
     {
       "name": "Died",
-      "possibleResults": ["False", "True"]
+      "possibleResults": [{ "name": "False" }, { "name": "True" }]
     },
     {
       "name": "Defense",
-      "possibleResults": ["False", "True"]
+      "possibleResults": [{ "name": "False" }, { "name": "True" }]
     }
   ]
 }
