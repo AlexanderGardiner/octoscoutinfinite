@@ -149,8 +149,8 @@ function updateGamePieceViewer() {
 
     // Adding a selector for results
     let gamePieceResultSelector = document.createElement("select");
-    if (possibleResults.length > 0) {
-      gamePieces[i].result = possibleResults[0];
+    if (possibleResults.length > 0 && gamePieces[i].result == null) {
+      gamePieces[i].result = possibleResults[0].name;
     }
     gamePieceResultSelector.onchange = () => {
       gamePieces[i].result = gamePieceResultSelector.value;
@@ -163,6 +163,8 @@ function updateGamePieceViewer() {
       option.text = possibleResults[j].name;
       gamePieceResultSelector.appendChild(option);
     }
+
+    gamePieceResultSelector.value = gamePieces[i].result;
 
     let clickableDeleteImage = document.createElement("img");
     clickableDeleteImage.src = "/images/deleteImage.png";
