@@ -8,7 +8,6 @@ function loadStoredData() {
   if (data != null) {
     let metaData = JSON.parse(data);
     scoutNameInput.value = metaData.scoutName;
-    matchNumberInput.value = parseInt(metaData.matchNumber) + 1;
     teamColorInput.value = metaData.teamColor;
   }
 }
