@@ -117,6 +117,7 @@ function collectPiece(location, gamePieceName, buttonColor) {
 // Updates the visualization of the game pieces collected
 function updateGamePieceViewer() {
   let gamePieceImageSideLength = 5; // In units of vh
+  let clickableDeleteImageSideLength = 5;
   gamePieceContainer.innerHTML = "";
 
   // Looping through game pieces
@@ -149,9 +150,19 @@ function updateGamePieceViewer() {
       gamePieceResultSelector.appendChild(option);
     }
 
+    let clickableDeleteImage = document.createElement("img");
+    clickableDeleteImage.src = "/images/deleteImage.png";
+    clickableDeleteImage.style.width = clickableDeleteImageSideLength + "vh";
+    clickableDeleteImage.style.height = clickableDeleteImageSideLength + "vh";
+    clickableDeleteImage.onclick = () => {
+      gamePieces.splice(i, 1);
+      updateGamePieceViewer();
+    };
+
     // Compiling elements together
     gamePiece.appendChild(gamePieceImage);
     gamePiece.appendChild(gamePieceResultSelector);
+    gamePiece.appendChild(clickableDeleteImage);
     gamePieceContainer.appendChild(gamePiece);
 
     // Setting background color of game piece and scrolling to bottom of the viewer

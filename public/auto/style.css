@@ -52,10 +52,12 @@
   border-radius: 5px;
   align-items: center;
   margin: 4px;
+  width: 100%;
 }
 
 .gamePieceResultSelector {
   margin: 5px;
+  height: 5vh;
 }
 
 #gamePieceViewerTitle {
