@@ -23,7 +23,7 @@ app.listen(PORT, () => {
 });
 
 async function writeDataToJSON(data) {
-  let filePath = "./output.json";
+  let filePath = "./public/output.json";
   data.timestamp = new Date();
   const lockfilePath = filePath + ".lock";
 

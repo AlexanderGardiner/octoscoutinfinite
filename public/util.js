@@ -12,6 +12,34 @@ async function getJSONConfig() {
   }
 }
 
+async function getGraphJSONConfig() {
+  try {
+    const response = await fetch("/graph.json");
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error("Error fetching JSON config:", error);
+    return null;
+  }
+}
+
+async function getJSONOutput() {
+  try {
+    const response = await fetch("/output.json");
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error("Error fetching JSON config:", error);
+    return null;
+  }
+}
+
 // Calculates the pixels from the top of the screen so the button is positioned on the field at the correct x coordinate (in meters).
 function xPositionMetersToPixelsFromTop(
   fieldImage,
@@ -40,6 +68,8 @@ function yPositionMetersToPixelsFromLeft(
 
 export {
   getJSONConfig,
+  getGraphJSONConfig,
+  getJSONOutput,
   xPositionMetersToPixelsFromTop,
   yPositionMetersToPixelsFromLeft,
 };

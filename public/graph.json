@@ -1,0 +1,162 @@
+{
+  "Overall": [
+    {
+      "graphName": "Pieces Controlled",
+      "metrics": [
+        { "path": "$['04teleop'][?(@.result == 'Speaker')]", "weight": 1 },
+        { "path": "$['04teleop'][?(@.result == 'Amp')]", "weight": 1 },
+        {
+          "path": "$['04teleop'][?(@.result == 'Amplified Speaker')]",
+          "weight": 1
+        },
+        {
+          "path": "$['04teleop'][?(@.result == 'Trap')]",
+          "weight": 1
+        },
+        {
+          "path": "$['04teleop'][?(@.result == 'Ferry')]",
+          "weight": 1
+        }
+      ]
+    },
+    {
+      "graphName": "Pieces Controlled2",
+      "metrics": [
+        { "path": "$['04teleop'][?(@.result == 'Speaker')]", "weight": 1 },
+        { "path": "$['04teleop'][?(@.result == 'Amp')]", "weight": 1 },
+        {
+          "path": "$['04teleop'][?(@.result == 'Amplified Speaker')]",
+          "weight": 1
+        },
+        {
+          "path": "$['04teleop'][?(@.result == 'Trap')]",
+          "weight": 1
+        },
+        {
+          "path": "$['04teleop'][?(@.result == 'Ferry')]",
+          "weight": 1
+        }
+      ]
+    }
+  ],
+  "Teleop": [
+    {
+      "graphName": "Pieces Controlled",
+      "metrics": [
+        { "path": "$['04teleop'][?(@.result == 'Speaker')]", "weight": 1 },
+        { "path": "$['04teleop'][?(@.result == 'Amp')]", "weight": 1 },
+        {
+          "path": "$['04teleop'][?(@.result == 'Amplified Speaker')]",
+          "weight": 1
+        },
+        {
+          "path": "$['04teleop'][?(@.result == 'Trap')]",
+          "weight": 1
+        },
+        {
+          "path": "$['04teleop'][?(@.result == 'Ferry')]",
+          "weight": 1
+        }
+      ]
+    },
+    {
+      "graphName": "Pieces Controlled2",
+      "metrics": [
+        { "path": "$['04teleop'][?(@.result == 'Speaker')]", "weight": 1 },
+        { "path": "$['04teleop'][?(@.result == 'Amp')]", "weight": 1 },
+        {
+          "path": "$['04teleop'][?(@.result == 'Amplified Speaker')]",
+          "weight": 1
+        },
+        {
+          "path": "$['04teleop'][?(@.result == 'Trap')]",
+          "weight": 1
+        },
+        {
+          "path": "$['04teleop'][?(@.result == 'Ferry')]",
+          "weight": 1
+        }
+      ]
+    }
+  ],
+  "Auto": [
+    {
+      "graphName": "Pieces Controlled",
+      "metrics": [
+        { "path": "$['04teleop'][?(@.result == 'Speaker')]", "weight": 1 },
+        { "path": "$['04teleop'][?(@.result == 'Amp')]", "weight": 1 },
+        {
+          "path": "$['04teleop'][?(@.result == 'Amplified Speaker')]",
+          "weight": 1
+        },
+        {
+          "path": "$['04teleop'][?(@.result == 'Trap')]",
+          "weight": 1
+        },
+        {
+          "path": "$['04teleop'][?(@.result == 'Ferry')]",
+          "weight": 1
+        }
+      ]
+    },
+    {
+      "graphName": "Pieces Controlled2",
+      "metrics": [
+        { "path": "$['04teleop'][?(@.result == 'Speaker')]", "weight": 1 },
+        { "path": "$['04teleop'][?(@.result == 'Amp')]", "weight": 1 },
+        {
+          "path": "$['04teleop'][?(@.result == 'Amplified Speaker')]",
+          "weight": 1
+        },
+        {
+          "path": "$['04teleop'][?(@.result == 'Trap')]",
+          "weight": 1
+        },
+        {
+          "path": "$['04teleop'][?(@.result == 'Ferry')]",
+          "weight": 1
+        }
+      ]
+    }
+  ],
+  "Endgame": [
+    {
+      "graphName": "Pieces Controlled",
+      "metrics": [
+        { "path": "$['04teleop'][?(@.result == 'Speaker')]", "weight": 1 },
+        { "path": "$['04teleop'][?(@.result == 'Amp')]", "weight": 1 },
+        {
+          "path": "$['04teleop'][?(@.result == 'Amplified Speaker')]",
+          "weight": 1
+        },
+        {
+          "path": "$['04teleop'][?(@.result == 'Trap')]",
+          "weight": 1
+        },
+        {
+          "path": "$['04teleop'][?(@.result == 'Ferry')]",
+          "weight": 1
+        }
+      ]
+    },
+    {
+      "graphName": "Pieces Controlled2",
+      "metrics": [
+        { "path": "$['04teleop'][?(@.result == 'Speaker')]", "weight": 1 },
+        { "path": "$['04teleop'][?(@.result == 'Amp')]", "weight": 1 },
+        {
+          "path": "$['04teleop'][?(@.result == 'Amplified Speaker')]",
+          "weight": 1
+        },
+        {
+          "path": "$['04teleop'][?(@.result == 'Trap')]",
+          "weight": 1
+        },
+        {
+          "path": "$['04teleop'][?(@.result == 'Ferry')]",
+          "weight": 1
+        }
+      ]
+    }
+  ]
+}

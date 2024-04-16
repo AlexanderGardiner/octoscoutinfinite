@@ -1,0 +1,17 @@
+.chart {
+  height: 200px;
+  width: 95%;
+  margin: 10px;
+}
+
+.graphContainer {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+#header {
+  color: white;
+}
