@@ -1,35 +1,133 @@
 {
-  "Teleop": [
+  "Overall": [
     {
-      "graphName": "Pieces Controlled",
+      "graphName": "Controlled Notes",
       "metrics": [
-        { "path": "gamePieces:Note/autoPossibleResults:Speaker", "weight": 1 },
-        { "path": "gamePieces:Note/autoPossibleResults:Amp", "weight": 1 },
+        { "path": "$['03auto'][?(@.result == 'Speaker')]", "weight": 1 },
+        { "path": "$['03auto'][?(@.result == 'Amp')]", "weight": 1 },
         {
-          "path": "gamePieces:Note/autoPossibleResults:Intentional Drop",
+          "path": "$['03auto'][?(@.result == 'Intentional Drop')]",
+          "weight": 1
+        },
+        { "path": "$['04teleop'][?(@.result == 'Speaker')]", "weight": 1 },
+        { "path": "$['04teleop'][?(@.result == 'Amp')]", "weight": 1 },
+        {
+          "path": "$['04teleop'][?(@.result == 'Amplified Speaker')]",
           "weight": 1
         },
         {
-          "path": "gamePieces:Note/teleopPossibleResults:Speaker",
+          "path": "$['04teleop'][?(@.result == 'Trap')]",
           "weight": 1
         },
         {
-          "path": "gamePieces:Note/teleopPossibleResults:Amp",
-          "weight": 1
-        },
-        {
-          "path": "gamePieces:Note/teleopPossibleResults:Amplified Speaker",
-          "weight": 1
-        },
-        {
-          "path": "gamePieces:Note/teleopPossibleResults:Trap",
-          "weight": 1
-        },
-        {
-          "path": "gamePieces:Note/teleopPossibleResults:Ferry",
+          "path": "$['04teleop'][?(@.result == 'Ferry')]",
           "weight": 1
         }
-      ]
+      ],
+      "units": "Notes"
     }
-  ]
+  ],
+  "Teleop": [
+    {
+      "graphName": "Controlled Notes",
+      "metrics": [
+        { "path": "$['04teleop'][?(@.result == 'Speaker')]", "weight": 1 },
+        { "path": "$['04teleop'][?(@.result == 'Amp')]", "weight": 1 },
+        {
+          "path": "$['04teleop'][?(@.result == 'Amplified Speaker')]",
+          "weight": 1
+        },
+        {
+          "path": "$['04teleop'][?(@.result == 'Trap')]",
+          "weight": 1
+        },
+        {
+          "path": "$['04teleop'][?(@.result == 'Ferry')]",
+          "weight": 1
+        }
+      ],
+      "units": "Notes"
+    },
+    {
+      "graphName": "Speaker Notes",
+      "metrics": [
+        { "path": "$['04teleop'][?(@.result == 'Speaker')]", "weight": 1 }
+      ],
+      "units": "Notes"
+    },
+    {
+      "graphName": "Amp Notes",
+      "metrics": [
+        { "path": "$['04teleop'][?(@.result == 'Amp')]", "weight": 1 }
+      ],
+      "units": "Notes"
+    },
+    {
+      "graphName": "Amplified Speaker Notes",
+      "metrics": [
+        {
+          "path": "$['04teleop'][?(@.result == 'Amplified Speaker')]",
+          "weight": 1
+        }
+      ],
+      "units": "Notes"
+    },
+    {
+      "graphName": "Trap Notes",
+      "metrics": [
+        {
+          "path": "$['04teleop'][?(@.result == 'Trap')]",
+          "weight": 1
+        }
+      ],
+      "units": "Notes"
+    },
+    {
+      "graphName": "Ferry Notes",
+      "metrics": [
+        {
+          "path": "$['04teleop'][?(@.result == 'Ferry')]",
+          "weight": 1
+        }
+      ],
+      "units": "Notes"
+    }
+  ],
+  "Auto": [
+    {
+      "graphName": "Controlled Notes",
+      "metrics": [
+        { "path": "$['03auto'][?(@.result == 'Speaker')]", "weight": 1 },
+        { "path": "$['03auto'][?(@.result == 'Amp')]", "weight": 1 },
+        {
+          "path": "$['03auto'][?(@.result == 'Intentional Drop')]",
+          "weight": 1
+        }
+      ],
+      "units": "Notes"
+    },
+    {
+      "graphName": "Speaker Notes",
+      "metrics": [
+        { "path": "$['03auto'][?(@.result == 'Speaker')]", "weight": 1 }
+      ],
+      "units": "Notes"
+    },
+    {
+      "graphName": "Amp Notes",
+      "metrics": [{ "path": "$['03auto'][?(@.result == 'Amp')]", "weight": 1 }],
+      "units": "Notes"
+    },
+    {
+      "graphName": "Intentional Drop Notes",
+      "metrics": [
+        {
+          "path": "$['03auto'][?(@.result == 'Intentional Drop')]",
+          "weight": 1
+        }
+      ],
+      "units": "Notes"
+    }
+  ],
+  "Endgame": []
 }

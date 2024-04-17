@@ -131,10 +131,10 @@ function getDataAndCreateGraph(
   for (let k = 0; k < graphCategory.length; k++) {
     let dataPoints = [];
     let means = [];
-    let values = Array().fill(0);
 
     // Looping through each team
     for (let l = 0; l < teams.length; l++) {
+      let values = [];
       // Getting matches of the team
       let matchesOfTeam = parsedJSONOutput.filter((obj) => {
         const metaData = obj["01metaData"];
@@ -181,11 +181,9 @@ function getDataAndCreateGraph(
       let q2B = b.dataPoint.y[4]; // Q2 value of b
 
       // If Q2 value is not present, fall back on mean
-      console.log(q2A);
       if (isNaN(q2A)) {
         q2A = a.mean.y;
       }
-      console.log(q2B);
       if (isNaN(q2B)) {
         q2B = b.mean.y;
       }
