@@ -129,5 +129,46 @@
       "units": "Notes"
     }
   ],
-  "Endgame": []
+  "Endgame": [
+    {
+      "graphName": "Park",
+      "metrics": [
+        {
+          "path": "$[?(@.Park == 'Successful')]",
+          "weight": 1
+        }
+      ],
+      "units": "Parks"
+    },
+    {
+      "graphName": "Onstage",
+      "metrics": [
+        {
+          "path": "$[?(@.Onstage == 'Successful')]",
+          "weight": 1
+        }
+      ],
+      "units": "Onstages"
+    },
+    {
+      "graphName": "Spotlit",
+      "metrics": [
+        {
+          "path": "$[?(@.Spotlit == 'Successful')]",
+          "weight": 1
+        }
+      ],
+      "units": "Spotlights"
+    },
+    {
+      "graphName": "Harmony",
+      "metrics": [
+        {
+          "path": "$[?(@.Harmony == 'Successful')]",
+          "weight": 1
+        }
+      ],
+      "units": "Harmonies"
+    }
+  ]
 }

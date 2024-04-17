@@ -199,7 +199,7 @@ function getDataAndCreateGraph(
     drawGraph(
       sortedDataPoints,
       sortedMeans,
-      graphCategoryName + " " + graphConfig.Teleop[k].graphName,
+      graphCategoryName + " " + graphConfig[graphCategoryName][k].graphName,
       graphCategory[k].units,
       graphContainer
     );
