@@ -17,7 +17,8 @@
           "path": "$['04teleop'][?(@.result == 'Ferry')]",
           "weight": 1
         }
-      ]
+      ],
+      "units": "Pieces"
     },
     {
       "graphName": "Pieces Controlled2",
@@ -36,7 +37,8 @@
           "path": "$['04teleop'][?(@.result == 'Ferry')]",
           "weight": 1
         }
-      ]
+      ],
+      "units": "Pieces"
     }
   ],
   "Teleop": [
@@ -57,7 +59,8 @@
           "path": "$['04teleop'][?(@.result == 'Ferry')]",
           "weight": 1
         }
-      ]
+      ],
+      "units": "Pieces"
     },
     {
       "graphName": "Pieces Controlled2",
@@ -76,7 +79,8 @@
           "path": "$['04teleop'][?(@.result == 'Ferry')]",
           "weight": 1
         }
-      ]
+      ],
+      "units": "Pieces"
     }
   ],
   "Auto": [
@@ -97,7 +101,8 @@
           "path": "$['04teleop'][?(@.result == 'Ferry')]",
           "weight": 1
         }
-      ]
+      ],
+      "units": "Pieces"
     },
     {
       "graphName": "Pieces Controlled2",
@@ -116,7 +121,8 @@
           "path": "$['04teleop'][?(@.result == 'Ferry')]",
           "weight": 1
         }
-      ]
+      ],
+      "units": "Pieces"
     }
   ],
   "Endgame": [
@@ -137,7 +143,8 @@
           "path": "$['04teleop'][?(@.result == 'Ferry')]",
           "weight": 1
         }
-      ]
+      ],
+      "units": "Pieces"
     },
     {
       "graphName": "Pieces Controlled2",
@@ -156,7 +163,8 @@
           "path": "$['04teleop'][?(@.result == 'Ferry')]",
           "weight": 1
         }
-      ]
+      ],
+      "units": "Pieces"
     }
   ]
 }

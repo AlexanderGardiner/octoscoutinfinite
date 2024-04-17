@@ -14,11 +14,14 @@ const parsedJSONOutput = JSONOutput.map((item) => {
   return parsedItem;
 });
 
+// Function to draw a graph to the screen
 function drawGraph(dataPoints, meanPoints, chartName, yLabel, graphContainer) {
   let chartDiv = document.createElement("div");
   chartDiv.id = chartName;
   chartDiv.classList.add("chart");
   graphContainer.appendChild(chartDiv);
+
+  // Converting to the format used by the graphing library
   let ranks = "";
   for (let i = 0; i < dataPoints.length; i++) {
     if (i != 0) {
@@ -27,6 +30,8 @@ function drawGraph(dataPoints, meanPoints, chartName, yLabel, graphContainer) {
       ranks = dataPoints[i].label;
     }
   }
+
+  // Converting to the format used by the graphing library
   let scores = "";
   for (let i = 0; i < dataPoints.length; i++) {
     if (i != 0) {
@@ -35,6 +40,8 @@ function drawGraph(dataPoints, meanPoints, chartName, yLabel, graphContainer) {
       scores = dataPoints[i].y[2];
     }
   }
+
+  // Defining the parameters for the graph
   let chartParameters = {
     title: {
       text: chartName,
@@ -65,11 +72,15 @@ function drawGraph(dataPoints, meanPoints, chartName, yLabel, graphContainer) {
       labelAutoFit: false,
     },
   };
-  console.log(chartParameters);
+
+  // Drawing graph
   var chart = new CanvasJS.Chart(chartName, chartParameters);
   chart.render();
 }
 
+// Defining which graphs to create based on which configs
+
+// Creating graphs under the overall category
 let overallGraphs = graphConfig.Overall;
 getDataAndCreateGraph(
   overallGraphs,
@@ -77,12 +88,15 @@ getDataAndCreateGraph(
   "Overall"
 );
 
+// Creating graphs under the teleop category
 let teleopGraphs = graphConfig.Teleop;
 getDataAndCreateGraph(
   teleopGraphs,
   document.getElementById("teleopGraphContainer"),
   "Teleop"
 );
+
+// Creating graphs under the auto category
 let autoGraphs = graphConfig.Auto;
 getDataAndCreateGraph(
   autoGraphs,
@@ -90,6 +104,7 @@ getDataAndCreateGraph(
   "Auto"
 );
 
+// Creating graphs under the endgame category
 let endgameGraphs = graphConfig.Endgame;
 getDataAndCreateGraph(
   endgameGraphs,
@@ -97,53 +112,70 @@ getDataAndCreateGraph(
   "Endgame"
 );
 
+// Function to get data from the json file, and
 function getDataAndCreateGraph(
   graphCategory,
   graphContainer,
   graphCategoryName
 ) {
-  let matchesOfTeam = parsedJSONOutput.filter((obj) => {
+  // Getting all teams in matches scouted
+  let teams = [];
+  parsedJSONOutput.filter((obj) => {
     const metaData = obj["01metaData"];
-    return metaData.teamNumber === "1";
+    if (!teams.includes(metaData.teamNumber)) {
+      teams.push(metaData.teamNumber);
+    }
   });
+
+  // Creating a graph for each section under the category
   for (let k = 0; k < graphCategory.length; k++) {
     let dataPoints = [];
     let means = [];
     let values = Array().fill(0);
-    for (let i = 0; i < matchesOfTeam.length; i++) {
-      let totalForMatch = 0;
-      for (let j = 0; j < graphCategory[k].metrics.length; j++) {
-        console.log(matchesOfTeam[i]);
-        console.log(
-          graphCategory[k].metrics[j].path +
-            getValues(matchesOfTeam[i], graphCategory[k].metrics[j].path)
-        );
-        totalForMatch +=
-          getValues(matchesOfTeam[i], graphCategory[k].metrics[j].path) *
-          graphCategory[k].metrics[j].weight;
+
+    // Looping through each team
+    for (let l = 0; l < teams.length; l++) {
+      // Getting matches of the team
+      let matchesOfTeam = parsedJSONOutput.filter((obj) => {
+        const metaData = obj["01metaData"];
+        return metaData.teamNumber === teams[l];
+      });
+
+      // Computing the values for the metric for each match
+      for (let i = 0; i < matchesOfTeam.length; i++) {
+        let totalForMatch = 0;
+        for (let j = 0; j < graphCategory[k].metrics.length; j++) {
+          totalForMatch +=
+            getValues(matchesOfTeam[i], graphCategory[k].metrics[j].path) *
+            graphCategory[k].metrics[j].weight;
+        }
+        values.push(totalForMatch);
       }
-      console.log(totalForMatch);
-      values.push(totalForMatch);
+
+      // Calculating quartiles and mean
+      let quartilesValues = quartiles(values);
+      let mean = calculateMean(values);
+      means.push({ label: teams[l], y: mean });
+      console.log(dataPoints);
+
+      dataPoints.push({
+        label: teams[l],
+        y: [
+          Math.min(...values),
+          quartilesValues.Q1,
+          quartilesValues.Q3,
+          Math.max(...values),
+          quartilesValues.Q2,
+        ],
+      });
     }
 
-    let quartilesValues = quartiles(values);
-    let mean = calculateMean(values);
-    means.push({ label: "test", y: mean });
-    dataPoints.push({
-      label: "test",
-      y: [
-        Math.min(...values),
-        quartilesValues.Q1,
-        quartilesValues.Q3,
-        Math.max(...values),
-        quartilesValues.Q2,
-      ],
-    });
+    // Drawing graph
     drawGraph(
       dataPoints,
       means,
       graphCategoryName + " " + graphConfig.Teleop[k].graphName,
-      "test",
+      graphCategory[k].units,
       graphContainer
     );
   }
