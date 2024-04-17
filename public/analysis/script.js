@@ -156,7 +156,6 @@ function getDataAndCreateGraph(
       let quartilesValues = quartiles(values);
       let mean = calculateMean(values);
       means.push({ label: teams[l], y: mean });
-      console.log(dataPoints);
 
       dataPoints.push({
         label: teams[l],
@@ -170,10 +169,38 @@ function getDataAndCreateGraph(
       });
     }
 
+    // Combine dataPoints and means into one array of objects
+    let combinedArray = dataPoints.map((dataPoint, index) => ({
+      dataPoint,
+      mean: means[index],
+    }));
+
+    // Sort the combined array by Q2 value (index 4) in dataPoint's y array
+    combinedArray.sort((a, b) => {
+      let q2A = a.dataPoint.y[4]; // Q2 value of a
+      let q2B = b.dataPoint.y[4]; // Q2 value of b
+
+      // If Q2 value is not present, fall back on mean
+      console.log(q2A);
+      if (isNaN(q2A)) {
+        q2A = a.mean.y;
+      }
+      console.log(q2B);
+      if (isNaN(q2B)) {
+        q2B = b.mean.y;
+      }
+
+      return q2B - q2A;
+    });
+
+    // Extract sorted dataPoints and means arrays
+    let sortedDataPoints = combinedArray.map((item) => item.dataPoint);
+    let sortedMeans = combinedArray.map((item) => item.mean);
+
     // Drawing graph
     drawGraph(
-      dataPoints,
-      means,
+      sortedDataPoints,
+      sortedMeans,
       graphCategoryName + " " + graphConfig.Teleop[k].graphName,
       graphCategory[k].units,
       graphContainer
