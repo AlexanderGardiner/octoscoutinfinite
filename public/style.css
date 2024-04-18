@@ -20,3 +20,8 @@ select {
   margin-top: 10vh;
   text-align: center;
 }
+
+#analysisButton {
+  width: 10vh;
+  left: 5vh;
+}

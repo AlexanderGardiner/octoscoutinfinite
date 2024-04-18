@@ -21,26 +21,6 @@ function drawGraph(dataPoints, meanPoints, chartName, yLabel, graphContainer) {
   chartDiv.classList.add("chart");
   graphContainer.appendChild(chartDiv);
 
-  // Converting to the format used by the graphing library
-  let ranks = "";
-  for (let i = 0; i < dataPoints.length; i++) {
-    if (i != 0) {
-      ranks = ranks + "," + dataPoints[i].label;
-    } else {
-      ranks = dataPoints[i].label;
-    }
-  }
-
-  // Converting to the format used by the graphing library
-  let scores = "";
-  for (let i = 0; i < dataPoints.length; i++) {
-    if (i != 0) {
-      scores = scores + "," + dataPoints[i].y[2];
-    } else {
-      scores = dataPoints[i].y[2];
-    }
-  }
-
   // Defining the parameters for the graph
   let chartParameters = {
     title: {
