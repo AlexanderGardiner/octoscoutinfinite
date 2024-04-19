@@ -12,9 +12,16 @@
     <button id="singleTeamButton" onclick="window.location.href = '/analysis'">
       Overall Analysis
     </button>
-    <div id="blueTeamsSelectorContainer"></div>
+    <div id="blueTeamsSelectorContainer">
+      <div id="blueTeamInputContainer"></div>
+      <button onclick="addBlueTeam()" class="addTeamButton">Add team</button>
+    </div>
+
     <div id="graphContainer" class="graphContainer"></div>
-    <div id="redTeamsSelectorContainer"></div>
+    <div id="redTeamsSelectorContainer">
+      <div id="redTeamInputContainer"></div>
+      <button onclick="addRedTeam()" class="addTeamButton">Add team</button>
+    </div>
     <script
       type="text/javascript"
       src="https://cdn.canvasjs.com/canvasjs.min.js"

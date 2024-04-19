@@ -5,7 +5,10 @@ import {
   calculateMean,
 } from "/util.js";
 let graphConfig = await getGraphJSONConfig();
+graphConfig.Comparison.reverse();
 let JSONOutput = await getJSONOutput();
+let blueTeamInputContainer = document.getElementById("blueTeamInputContainer");
+let redTeamInputContainer = document.getElementById("redTeamInputContainer");
 // Parse JSON strings in data
 const parsedJSONOutput = JSONOutput.map((item) => {
   const parsedItem = { ...item };
@@ -18,11 +21,6 @@ const parsedJSONOutput = JSONOutput.map((item) => {
   });
   return parsedItem;
 });
-
-let queryString = window.location.search;
-
-let urlParams = new URLSearchParams(queryString);
-let teamNumber = urlParams.get("team");
 
 // Function to draw a graph to the screen
 function drawGraph(graphConfigs, chartName, graphContainer) {
@@ -47,16 +45,12 @@ function drawGraph(graphConfigs, chartName, graphContainer) {
   chart.render();
 }
 
-function drawGraphs() {
-  // Defining which graphs to create based on which configs
-
-  // Creating graphs under the overall category
+function updateGraph() {
+  let graphContainer = document.getElementById("graphContainer");
+  graphContainer.innerHTML = "";
+  // Creating graph
   let comparisonGraphs = graphConfig.Comparison;
-  getDataAndCreateGraph(
-    comparisonGraphs,
-    document.getElementById("graphContainer"),
-    "Comparison"
-  );
+  getDataAndCreateGraph(comparisonGraphs, graphContainer, "Comparison");
 }
 
 // Function to get data from the json file, and
@@ -65,8 +59,8 @@ function getDataAndCreateGraph(
   graphContainer,
   graphCategoryName
 ) {
-  let blueTeams = ["9084", "1", "2"];
-  let redTeams = ["1", "2"];
+  let blueTeams = getBlueTeams();
+  let redTeams = getRedTeams();
 
   let graphConfigs = getGraphConfigForTeams(
     blueTeams,
@@ -74,7 +68,7 @@ function getDataAndCreateGraph(
     graphCategoryName,
     true
   );
-  graphCategory.reverse();
+
   graphConfigs.push.apply(
     graphConfigs,
     getGraphConfigForTeams(redTeams, graphCategory, graphCategoryName, false)
@@ -149,13 +143,13 @@ function getGraphConfigForTeams(
         ].join(",") +
         ")";
     }
-    console.log(dataPoints);
     graphConfigs.push({
       type: "stackedBar100",
+      showInLegend: true,
+      name: teams[l],
       color: color,
       dataPoints: dataPoints,
     });
-    console.log(graphConfigs);
   }
   return graphConfigs;
 }
@@ -165,4 +159,45 @@ function getValues(JSON, path) {
   return jsonpath.query(JSON, path).length;
 }
 
-drawGraphs();
+document.addBlueTeam = addBlueTeam;
+document.addRedTeam = addRedTeam;
+
+function addBlueTeam() {
+  let blueTeamInput = document.createElement("input");
+  blueTeamInput.addEventListener("input", function () {
+    updateGraph();
+  });
+  blueTeamInput.classList.add("addTeamInput");
+  blueTeamInputContainer.appendChild(blueTeamInput);
+}
+
+function getBlueTeams() {
+  let blueTeams = [];
+  let children = blueTeamInputContainer.children;
+  for (let i = 0; i < children.length; i++) {
+    blueTeams.push(children[i].value);
+  }
+
+  return blueTeams;
+}
+
+function addRedTeam() {
+  let redTeamInput = document.createElement("input");
+  redTeamInput.addEventListener("input", function () {
+    updateGraph();
+  });
+  redTeamInput.classList.add("addTeamInput");
+  redTeamInputContainer.appendChild(redTeamInput);
+}
+
+function getRedTeams() {
+  let redTeams = [];
+  let children = redTeamInputContainer.children;
+  for (let i = 0; i < children.length; i++) {
+    redTeams.push(children[i].value);
+  }
+
+  return redTeams;
+}
+
+updateGraph();
