@@ -71,3 +71,14 @@ async function submitData() {
     }
   }
 }
+
+document.scoutAgain = scoutAgain;
+function scoutAgain() {
+  if (!matchSubmitted) {
+    if (confirm("You haven't submitted a match, your data will be lost.")) {
+      window.location.href = "/";
+    }
+  } else {
+    window.location.href = "/";
+  }
+}
