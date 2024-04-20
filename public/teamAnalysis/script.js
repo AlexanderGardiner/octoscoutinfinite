@@ -102,8 +102,11 @@ function getDataAndCreateGraph(
     // Getting matches of the team
     let matchesOfTeam = parsedJSONOutput.filter((obj) => {
       const metaData = obj["01metaData"];
-      matchNumbers.push(obj["01metaData"].matchNumber);
-      return metaData.teamNumber === teamNumber;
+      if (metaData.teamNumber === teamNumber) {
+        matchNumbers.push(obj["01metaData"].matchNumber);
+        return true;
+      }
+      return false;
     });
 
     // Computing the values for the metric for each match

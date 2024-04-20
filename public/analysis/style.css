@@ -35,3 +35,9 @@
   position: absolute;
   right: 20vh;
 }
+#autoAnalysisButton {
+  width: 10vh;
+  height: 5vh;
+  position: absolute;
+  right: 35vh;
+}
