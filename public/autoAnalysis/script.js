@@ -18,25 +18,35 @@ let queryString = window.location.search;
 
 let urlParams = new URLSearchParams(queryString);
 let teamNumber = urlParams.get("team");
+
+// Defining constants
 let fieldWidth = 8.2;
 let fieldHeight = 16.5;
 let fieldSizeMultiplier = 50;
 let gamePieceDimension = 1;
 let gamePieceBoxDimension = 1.4;
 
-// Function to draw a graph to the screen
+// Function to draw an auto path to the screen
 function drawAutoPath(pieces, matchNumber) {
+  // Creating container
+  let canvasDiv = document.createElement("div");
+  canvasDiv.classList.add("autoCanvasContainer");
+
+  // Creating title
   let canvasTitle = document.createElement("h1");
   canvasTitle.innerHTML = matchNumber;
   canvasTitle.classList.add("canvasTitle");
-  let canvasDiv = document.createElement("div");
-  canvasDiv.classList.add("autoCanvasContainer");
-  canvasDiv.appendChild(canvasTitle);
-  canvasContainer.appendChild(canvasDiv);
 
+  // Creating canvas
   let canvas = document.createElement("canvas");
   let ctx = canvas.getContext("2d");
   canvas.classList.add("autoCanvas");
+
+  canvasDiv.appendChild(canvasTitle);
+  canvasContainer.appendChild(canvasDiv);
+  canvasDiv.appendChild(canvas);
+
+  // Setting canvas properties
   canvas.style.height = fieldHeight * fieldSizeMultiplier + "px";
   canvas.style.width = fieldWidth * fieldSizeMultiplier + "px";
   canvas.height = fieldHeight * fieldSizeMultiplier;
@@ -45,6 +55,7 @@ function drawAutoPath(pieces, matchNumber) {
   ctx.textAlign = "center";
   ctx.lineWidth = 15;
 
+  // Drawing field image
   ctx.drawImage(
     document.getElementById("fieldImage"),
     0,
@@ -52,11 +63,13 @@ function drawAutoPath(pieces, matchNumber) {
     fieldWidth * fieldSizeMultiplier,
     fieldHeight * fieldSizeMultiplier
   );
-  canvasDiv.appendChild(canvas);
 
+  // Setting color iterators for lines between collections
   let iteratorColorStartingValue = 100;
   let colorIterator = iteratorColorStartingValue;
   let maxColorIteratorValue = 255;
+
+  // Drawing a line between pieces
   for (let i = 0; i < pieces.length - 1; i++) {
     ctx.strokeStyle =
       "rgb(" +
@@ -67,6 +80,7 @@ function drawAutoPath(pieces, matchNumber) {
     colorIterator +=
       (maxColorIteratorValue - iteratorColorStartingValue) /
       (pieces.length - 1);
+
     ctx.beginPath();
     ctx.moveTo(
       pieces[i].collectionLocation.y * fieldSizeMultiplier,
@@ -78,12 +92,17 @@ function drawAutoPath(pieces, matchNumber) {
     );
     ctx.stroke();
   }
+
+  // Drawing pieces
   for (let i = 0; i < pieces.length; i++) {
+    // Creating image for piece
     let img = new Image();
     img.src = "../images/" + pieces[i].name + ".png";
+
     img.onload = function () {
       ctx.fillStyle = "#bb9839";
 
+      // Drawing a background square
       ctx.fillRect(
         (pieces[i].collectionLocation.y - gamePieceBoxDimension / 2) *
           fieldSizeMultiplier,
@@ -92,6 +111,8 @@ function drawAutoPath(pieces, matchNumber) {
         gamePieceBoxDimension * fieldSizeMultiplier,
         gamePieceBoxDimension * fieldSizeMultiplier
       );
+
+      // Drawing the piece
       ctx.drawImage(
         img,
         (pieces[i].collectionLocation.y - gamePieceDimension / 2) *
@@ -101,7 +122,10 @@ function drawAutoPath(pieces, matchNumber) {
         gamePieceDimension * fieldSizeMultiplier,
         gamePieceDimension * fieldSizeMultiplier
       );
+
       ctx.fillStyle = "#FFFFFF";
+
+      // Drawing the piece result
       ctx.fillText(
         pieces[i].result,
         pieces[i].collectionLocation.y * fieldSizeMultiplier,
@@ -113,17 +137,19 @@ function drawAutoPath(pieces, matchNumber) {
 
 // Function to get data from the json file, and
 function getDataAndDrawAutoPaths() {
-  for (let i = 0; i < parsedJSONOutput.length; i++) {
+  // Get matches for the selected team
+  let matchesOfTeam = parsedJSONOutput.filter((obj) => {
+    const metaData = obj["01metaData"];
+    return metaData.teamNumber === teamNumber;
+  });
+
+  // Draw the auto path for each match
+  for (let i = 0; i < matchesOfTeam.length; i++) {
     drawAutoPath(
-      parsedJSONOutput[i]["03auto"],
-      "Match " + parsedJSONOutput[i]["01metaData"].matchNumber
+      matchesOfTeam[i]["03auto"],
+      "Match " + matchesOfTeam[i]["01metaData"].matchNumber
     );
   }
-}
-
-// Function to retrieve value by JSON path
-function getValues(JSON, path) {
-  return jsonpath.query(JSON, path).length;
 }
 
 window.updateTeamNumber = updateTeamNumber;
@@ -141,36 +167,5 @@ function updateTeamNumber(input) {
 let teamNumberInput = document.getElementById("teamNumberInput");
 teamNumberInput.value = teamNumber;
 teamNumberInput.focus();
-// drawAutoPath([
-//   {
-//     collectionLocation: {
-//       name: "blue3",
-//       x: 2.9,
-//       y: 4.1,
-//     },
-//     name: "Note",
-//     color: "rgb(0, 0, 186.66666666666666)",
-//     result: "Amp",
-//   },
-//   {
-//     collectionLocation: {
-//       name: "blue3",
-//       x: 10,
-//       y: 4.1,
-//     },
-//     name: "Note",
-//     color: "rgb(0, 0, 186.66666666666666)",
-//     result: "Amp",
-//   },
-//   {
-//     collectionLocation: {
-//       name: "blue3",
-//       x: 10,
-//       y: 7,
-//     },
-//     name: "Note",
-//     color: "rgb(0, 0, 186.66666666666666)",
-//     result: "Amp",
-//   },
-// ]);
+
 getDataAndDrawAutoPaths();
