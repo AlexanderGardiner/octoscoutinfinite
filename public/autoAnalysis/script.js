@@ -146,7 +146,17 @@ function getDataAndDrawAutoPaths() {
   // Draw the auto path for each match
   for (let i = 0; i < matchesOfTeam.length; i++) {
     drawAutoPath(
-      matchesOfTeam[i]["03auto"],
+      [
+        {
+          collectionLocation: {
+            name: "blue3",
+            x: matchesOfTeam[i]["02startingLocation"].x,
+            y: matchesOfTeam[i]["02startingLocation"].y,
+          },
+          name: "robot",
+          result: "Starting Location",
+        },
+      ].concat(matchesOfTeam[i]["03auto"]),
       "Match " + matchesOfTeam[i]["01metaData"].matchNumber
     );
   }
