@@ -49,7 +49,6 @@
         { "name": "No Result" },
         { "name": "Speaker" },
         { "name": "Amp" },
-        { "name": "Amplified Speaker" },
         { "name": "Trap" },
         { "name": "Failed" },
         { "name": "Ferry" }
