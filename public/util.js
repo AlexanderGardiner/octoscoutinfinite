@@ -1,3 +1,6 @@
+let fieldWidth = 8.2;
+let fieldHeight = 16.5;
+
 async function getJSONConfig() {
   try {
     const response = await fetch("/config.json");
@@ -133,4 +136,6 @@ export {
   yPositionMetersToPixelsFromLeft,
   quartiles,
   calculateMean,
+  fieldWidth,
+  fieldHeight,
 };

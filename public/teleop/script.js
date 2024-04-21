@@ -2,6 +2,8 @@ import {
   getJSONConfig,
   xPositionMetersToPixelsFromTop,
   yPositionMetersToPixelsFromLeft,
+  fieldWidth,
+  fieldHeight,
 } from "/util.js";
 
 let JSONConfig = await getJSONConfig();
@@ -10,6 +12,11 @@ let fieldImage = document.getElementById("fieldImage");
 let gamePieceContainer = document.getElementById("gamePieceContainer");
 let gamePieceViewer = document.getElementById("gamePieceViewer");
 let gamePieces = [];
+let isBlue = JSON.parse(localStorage.getItem("01metaData")).teamColor == "Blue";
+if (!isBlue) {
+  fieldImage.src = "../images/teleopFieldRed.png";
+}
+
 generateCollectionButtons();
 loadStoredData();
 
@@ -57,6 +64,10 @@ function addCollectionClickableImage(
   gamePieceName,
   imageBackgroundColor
 ) {
+  if (isBlue) {
+    collectionLocation.x = fieldHeight - collectionLocation.x;
+    collectionLocation.y = fieldWidth - collectionLocation.y;
+  }
   let clickableImage = document.createElement("img");
   let clickableImageSideLength = 5; // In units of vh
   clickableImage.onclick = function () {

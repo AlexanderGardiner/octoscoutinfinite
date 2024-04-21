@@ -1,4 +1,4 @@
-import { getJSONOutput } from "/util.js";
+import { getJSONOutput, fieldWidth, fieldHeight } from "/util.js";
 let JSONOutput = await getJSONOutput();
 
 // Parse JSON strings in data
@@ -20,8 +20,6 @@ let urlParams = new URLSearchParams(queryString);
 let teamNumber = urlParams.get("team");
 
 // Defining constants
-let fieldWidth = 8.2;
-let fieldHeight = 16.5;
 let fieldSizeMultiplier = 50;
 let gamePieceDimension = 1;
 let gamePieceBoxDimension = 1.4;
