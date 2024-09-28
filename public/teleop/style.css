@@ -21,6 +21,7 @@
   top: 5vh;
   position: absolute;
   border: 1px solid white;
+  min-height: 50vh;
 }
 
 .clickableImage {

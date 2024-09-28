@@ -3,6 +3,8 @@ import { getJSONConfig } from "/util.js";
 let JSONConfig = await getJSONConfig();
 let extraOptions = JSONConfig.extraOptions;
 let extraSelectsContainer = document.getElementById("extraSelectsContainer");
+let commentInput = document.getElementById("commentInput");
+
 let extraSelects = [];
 generateSelects();
 loadStoredData();
@@ -48,6 +50,8 @@ function saveData() {
   for (let i = 0; i < extraOptions.length; i++) {
     extra[extraOptions[i].name] = extraSelects[i].value;
   }
+
+  extra["Comments"] = commentInput.value;
   localStorage.setItem("06extra", JSON.stringify(extra));
 }
 

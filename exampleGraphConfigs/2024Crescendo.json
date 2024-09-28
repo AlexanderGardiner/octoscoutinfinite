@@ -63,16 +63,6 @@
       "units": "Notes"
     },
     {
-      "graphName": "Amplified Speaker Notes",
-      "metrics": [
-        {
-          "path": "$['04teleop'][?(@.result == 'Amplified Speaker')]",
-          "weight": 1
-        }
-      ],
-      "units": "Notes"
-    },
-    {
       "graphName": "Trap Notes",
       "metrics": [
         {
