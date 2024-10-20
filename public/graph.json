@@ -12,10 +12,6 @@
         { "path": "$['04teleop'][?(@.result == 'Speaker')]", "weight": 1 },
         { "path": "$['04teleop'][?(@.result == 'Amp')]", "weight": 1 },
         {
-          "path": "$['04teleop'][?(@.result == 'Amplified Speaker')]",
-          "weight": 1
-        },
-        {
           "path": "$['04teleop'][?(@.result == 'Trap')]",
           "weight": 1
         },
@@ -25,6 +21,28 @@
         }
       ],
       "units": "Notes"
+    },
+    {
+      "graphName": "Ramsey's Metric",
+      "metrics": [
+        { "path": "$['03auto'][?(@.result == 'Speaker')]", "weight": 0.2 },
+        { "path": "$['03auto'][?(@.result == 'Amp')]", "weight": 0 },
+        {
+          "path": "$['03auto'][?(@.result == 'Intentional Drop')]",
+          "weight": 0
+        },
+        { "path": "$['04teleop'][?(@.result == 'Speaker')]", "weight": 0.35 },
+        { "path": "$['04teleop'][?(@.result == 'Amp')]", "weight": 0.25 },
+        {
+          "path": "$['04teleop'][?(@.result == 'Trap')]",
+          "weight": 0.05
+        },
+        {
+          "path": "$['04teleop'][?(@.result == 'Ferry')]",
+          "weight": 0.15
+        }
+      ],
+      "units": "Arbitrary Units"
     }
   ],
   "Teleop": [

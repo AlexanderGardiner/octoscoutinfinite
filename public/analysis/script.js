@@ -160,10 +160,10 @@ function getDataAndCreateGraph(
       mean: means[index],
     }));
 
-    // Sort the combined array by Q2 value (index 4) in dataPoint's y array
+    // Sort the combined array by Q3 value (index 4) in dataPoint's y array
     combinedArray.sort((a, b) => {
-      let q2A = a.dataPoint.y[4]; // Q2 value of a
-      let q2B = b.dataPoint.y[4]; // Q2 value of b
+      let q2A = a.dataPoint.y[2]; // Q3 value of a
+      let q2B = b.dataPoint.y[2]; // Q3 value of b
 
       // If Q2 value is not present, fall back on mean
       if (isNaN(q2A)) {
